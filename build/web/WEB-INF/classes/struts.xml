@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <!--<constant name="struts.ui.theme" value="bootsstrap"/>-->
+
+
+    <package name="MainPage" extends="struts-default">
+        <result-types>
+            <result-type name="tiles"
+                         class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            
+            <interceptor name="checkOrgSession" class="interceptors.checkOrgSession"></interceptor>
+            <interceptor-stack name="OrgSessionStack">
+                <interceptor-ref name="checkOrgSession" /><interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor name="checkEmpSession" class="interceptors.checkEmpSession"></interceptor>
+            <interceptor-stack name="EmpSessionStack">
+                <interceptor-ref name="checkEmpSession"/><interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor name="checkLogin" class="interceptors.checkLogin"></interceptor>
+            <interceptor-stack name="LoggedIn">
+                <interceptor-ref name="checkLogin"/><interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+        </interceptors>
+        
+        <global-results>
+            <result name="ORG_unauthorized" type="tiles">ORGLogin</result>
+            <result name="EMP_unauthorized" type="tiles">EmpLogin</result>
+            <result name="OrgLoggedIn" type="tiles">companyPageLayout</result>
+            <result name="EmpLoggedIn" type="tiles">employeePageLayout</result>
+        </global-results>
+
+        <action name="MainPageLayout">
+            <result type="tiles">MainPageLayout</result>
+        </action>
+        <action name="MainPageAbout">
+            <result type="tiles">MainPageAbout</result>
+        </action>
+        <action name="MainPageCommunity">
+            <result type="tiles">MainPageCommunity</result>
+        </action>
+        <action name="MainPageCreators">
+            <result type="tiles">MainPageCreators</result>
+        </action>
+        <action name="Docs">
+            <result type="tiles">Docs</result>
+        </action>
+        <action name="EmpLogin" class="Content_Loaders.select_choices_loader"  method="Load_ORG">
+            <interceptor-ref name="LoggedIn"/>
+            <result type="tiles" name="success">EmpLogin</result>
+        </action>
+        <action name="EmpSignup" class="Content_Loaders.select_choices_loader"  method="Load_ORG">
+            <interceptor-ref name="LoggedIn"/>
+            <result type="tiles">EmpSignup</result>
+        </action>
+        <action name="ORGLogin">
+            <interceptor-ref name="LoggedIn"/>
+            <result type="tiles">ORGLogin</result>
+        </action>
+        <action name="ORGsignup">
+            <interceptor-ref name="LoggedIn"/>
+            <result type="tiles">ORGsignup</result>
+        </action>
+        <action name="signup_the_emp" class="Employee.EmployeeSignUpAction" method="execute">
+            <result name="success" type="tiles">EmpLogin</result>
+            <result name="input" type="tiles">EmpSignup</result>
+        </action>
+        <action name="login_the_emp" class="Employee.EmployeeLogInAction" method="execute">
+            <result name="success" type="tiles">employeePageLayout</result>
+            <result name="input" type="tiles">EmpLogin</result>
+        </action>
+
+        <action name="signup_org" class="Organization.CreateOrgAction" method="execute">
+            <result name="success" type="tiles">ORGLogin</result>
+            <result name="input" type="tiles">ORGsignup</result>
+        </action>
+        <action name="Login_org" class="Organization.LogInOrgAction" method="execute">
+            <result name="success" type="tiles">companyPageLayout</result>
+            <result name="input" type="tiles">ORGLogin</result>
+        </action>
+
+        <action name="OrgLogout" class="Organization.LogInOrgAction" method="logOut">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result name="success" type="tiles">MainPageLayout</result>
+        </action>
+        
+        <action name="EmpLogout" class="Employee.EmployeeLogInAction" method="logOut">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result name="success" type="tiles">MainPageLayout</result>
+        </action>
+
+
+
+
+
+        <action name="companyPageLayout" class="Organization.Organization_operations" method="Find_Expenditure">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyPageLayout</result>
+        </action>
+        <action name="companyPageInvestments" class="Organization.Organization_operations" method="Find_Investment">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyPageInvestments</result>
+        </action>
+        <action name="companyBalance" class="Organization.Organization_operations" method="Balance">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyBalance</result>
+        </action>
+        <action name="companyTaxes" class="Organization.Organization_operations" method="Find_tax">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyTaxes</result>
+        </action>
+        <action name="companyHR">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyHR</result>
+        </action>
+        <action name="companyUpdateResources" class="Organization.Organization_operations" method="All_Dept_By_OrgId">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyUpdateResources</result>
+        </action>
+        
+        <action name="companyAddProject" class="Organization.Organization_operations" method="Add_Project">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyUpdateResources</result>
+        </action>
+        
+        <action name="companyAddTransaction" class="Organization.Organization_operations" method="Add_transaction">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyUpdateResources</result>
+        </action>
+        
+        <action name="companyAssignProject" class="Organization.Organization_operations" method="Assign_Project">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyUpdateResources</result>
+        </action>
+        
+        <action name="companyFinanceHistory">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyFinanceHistory</result>
+        </action>
+        <action name="companyGrowth">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyGrowth</result>
+        </action>
+        
+        <action name="companyAddDept" class="Organization.Organization_operations" method="Add_Dept">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyUpdateResources</result>
+        </action>
+
+        <action name="companyIncome" class="Organization.Organization_operations" method="Find_income">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyIncome</result>
+        </action>
+        <action name="companyProfit" class="Organization.Organization_operations" method="Find_Profit">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles" name="success">companyProfit</result>
+        </action>
+        <action name="companyGenerateBill">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyGenerateBill</result>
+        </action>
+        <action name="companyEmployeesAssigned">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyEmployeesAssigned</result>
+        </action>
+        <action name="companyProPending">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyProPending</result>
+        </action>
+
+        <action name="companyProCompleted">
+            <interceptor-ref name="OrgSessionStack"/>
+            <result type="tiles">companyProCompleted</result>
+        </action>
+
+       
+
+        <action name="employeePageLayout" class="Employee.Employee_operations" method="salary_emp">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result type="tiles" name="success">employeePageLayout</result>
+        </action>
+        <action name="employeePagePersonalInfo" class="Employee.Employee_operations" method="Personal_info">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result type="tiles" name="success">employeePagePersonalInfo</result>
+        </action>
+        <action name="employeePageUpdateInfo">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result type="tiles">employeePageUpdateInfo</result>
+        </action>
+        
+        <action name="employeePageProjectsAssigned" class="Employee.Employee_operations" method="Fetch_Project">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result type="tiles" name="success">employeePageProjectsAssigned</result>
+        </action>
+        
+        
+        <action name="employeePageOrgDetails">
+            <interceptor-ref name="EmpSessionStack"/>
+            <result type="tiles">employeePageOrgDetails</result>
+        </action>
+
+    </package>
+
+
+</struts>

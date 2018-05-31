@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="MainPageLayout" template="/MainPageLayout.jsp">
+
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="banner" value="/MainHeader.jsp"/>
+        <put-attribute name="footer" value="/footer.jsp"/>
+        <put-attribute name="body" value="/MainPageLoginSignup.jsp"/>
+        <put-attribute name="menu" value="/MainMenubar.jsp"/>
+
+    </definition>
+
+    <definition name="MainPageAbout" extends="MainPageLayout">
+        <put-attribute name="body" value="/MainPageAbout.jsp"/>
+    </definition>
+
+    <definition name="MainPageCommunity" extends="MainPageLayout">
+        <put-attribute name="body" value="/MainPageCommunity.jsp"/>
+    </definition>
+
+
+    <definition name="MainPageCreators" extends="MainPageLayout">
+        <put-attribute name="body" value="/MainPageCreators.jsp"/>
+    </definition>
+
+
+    <definition name="Docs" extends="MainPageLayout">
+        <put-attribute name="body" value="/Docs.jsp"/>
+    </definition>
+
+    <definition name="EmpLogin" extends="MainPageLayout">
+        <put-attribute name="body" value="/EmpLogin.jsp"/>
+    </definition>
+
+    <definition name="EmpSignup" extends="MainPageLayout">
+        <put-attribute name="body" value="/EmpSignup.jsp"/>
+    </definition>
+
+
+    <definition name="ORGsignup" extends="MainPageLayout">
+        <put-attribute name="body" value="/ORGsignup.jsp"/>
+    </definition>
+
+    <definition name="ORGLogin" extends="MainPageLayout">
+        <put-attribute name="body" value="/ORGLogin.jsp"/>
+    </definition>
+
+
+    <definition name="companyPageLayout" template="/companyPageLayout.jsp">
+
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="banner" value="/companyHeader.jsp"/>
+        <put-attribute name="footer" value="/footer.jsp"/>
+        <put-attribute name="body" value="/companyPageExpenditures.jsp"/>
+        <put-attribute name="menu" value="/companyMenu.jsp"/>
+
+    </definition>
+
+    <definition name="companyPageInvestments" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Investments"/>
+        <put-attribute name="body" value="/companyPageInvestments.jsp"/>
+    </definition>
+
+
+    <definition name="companyTaxes" extends="companyPageLayout">
+        <put-attribute name="title" value="Taxes"/>
+        <put-attribute name="body" value="/companyTaxes.jsp"/>
+    </definition>
+
+
+    <definition name="companyHR" extends="companyPageLayout">
+        <put-attribute name="title" value="Human Resources"/>
+        <put-attribute name="body" value="/companyHR.jsp"/>
+    </definition>
+
+
+    <definition name="companyBalance" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Balance"/>
+        <put-attribute name="body" value="/companyBalance.jsp"/>
+    </definition>
+
+
+    <definition name="companyUpdateResources" extends="companyPageLayout">
+        <put-attribute name="title" value="Update Resources"/>
+        <put-attribute name="body" value="/companyUpdateResources.jsp"/>
+    </definition>
+
+
+    <definition name="companyGrowth" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Growth"/>
+        <put-attribute name="body" value="/companyGrowth.jsp"/>
+    </definition>
+
+
+    <definition name="companyFinanceHistory" extends="companyPageLayout">
+        <put-attribute name="title" value="Finance History"/>
+        <put-attribute name="body" value="/companyFinanceHistory.jsp"/>
+    </definition>
+
+    <definition name="companyProfit" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Profit"/>
+        <put-attribute name="body" value="/companyProfit.jsp"/>
+    </definition>
+
+    <definition name="companyIncome" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Income"/>
+        <put-attribute name="body" value="/companyIncome.jsp"/>
+    </definition>
+
+    <definition name="companyGenerateBill" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Income"/>
+        <put-attribute name="body" value="/companyGenerateBill.jsp"/>
+    </definition>
+
+    <definition name="companyProPending" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Income"/>
+        <put-attribute name="body" value="/companyProPending.jsp"/>
+    </definition>
+
+    <definition name="companyProCompleted" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Income"/>
+        <put-attribute name="body" value="/companyProCompleted.jsp"/>
+    </definition>
+
+
+    <definition name="companyEmployeesAssigned" extends="companyPageLayout">
+        <put-attribute name="title" value="Company Income"/>
+        <put-attribute name="body" value="/companyEmployeesAssigned.jsp"/>
+    </definition>
+
+
+
+    <definition name="employeePageLayout" template="/employeePageLayout.jsp">
+
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="banner" value="/employeeHeader.jsp"/>
+        <put-attribute name="footer" value="/footer.jsp"/>
+        <put-attribute name="body" value="/employeePagePayslip.jsp"/>
+        <put-attribute name="menu" value="/employeePageMenu.jsp"/>
+    </definition>
+
+    <definition name="employeePagePersonalInfo" extends="employeePageLayout">
+        <put-attribute name="title" value="Contact Us"/>
+        <put-attribute name="body" value="/employeePagePersonalInfo.jsp"/>
+    </definition>
+    
+    
+    <definition name="employeePageProjectsAssigned" extends="employeePageLayout">
+        <put-attribute name="title" value="Contact Us"/>
+        <put-attribute name="body" value="/employeePageProjectsAssigned.jsp"/>
+    </definition>
+
+
+    <definition name="employeePageUpdateInfo" extends="employeePageLayout">
+        <put-attribute name="title" value="Update Info"/>
+        <put-attribute name="body" value="/employeePageUpdateInfo.jsp"/>
+    </definition>
+
+
+    <definition name="employeePageOrgDetails" extends="employeePageLayout">
+        <put-attribute name="title" value="Organisation Details"/>
+        <put-attribute name="body" value="/employeePageOrgDetails.jsp"/>
+    </definition>
+
+
+</tiles-definitions>
