@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.font-footer-heading
+{
+    color:gainsboro;
+}
+.font-footer-heading:hover
+{
+    cursor:pointer;
+    color:white;
+}
+.font-footer-tags
+{
+    color:gainsboro;
+    font-weight:lighter;
+}
+.font-footer-tags:hover
+{
+    cursor:pointer;
+    color:white;
+}
+.social-links-footer{
+    color:white;
+}
+.social-links-footer:hover
+{
+    cursor:pointer;
+}
+.social-links-footer-tags
+{
+    color:gainsboro;
+}
+.dropdown-dhuvidha
+{
+    color:white;
+}
+.dropdown-dhuvidha:hover
+{
+    color:black;
+}
